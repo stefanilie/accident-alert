@@ -32,3 +32,54 @@ Template['header'].events({
     Meteor.logout();
   }
 });
+
+function ciorba()
+{
+    console.log("am apelat functia ciorba");
+    var timestamp = 0;
+    var samples = [];
+
+    if (window.DeviceMotionEvent != undefined) {
+
+      // Device motion event service routine!
+
+      window.ondevicemotion = setInterval(function(e) {
+
+        // Measure sample interval and siplay on page
+
+        var t = Date.now();
+        $("#measured").html(t - timestamp);
+        $("#interval").html(e.interval);
+        timestamp = t
+
+        // Create the sample
+
+        var sample = {}
+        sample.x = e.acceleration.x;
+        sample.y = e.acceleration.y;
+        sample.z = e.acceleration.z;
+        $("#accx").html(sample.x);
+        $("#accy").html(sample.y);
+        $("#accz").html(sample.z);
+
+        if ( e.rotationRate ) {
+          sample.a = e.rotationRate.alpha;
+          sample.b = e.rotationRate.beta;
+          sample.c = e.rotationRate.gamma;
+          $("#rota").html(sample.a);
+          $("#rotb").html(sample.b);
+          $("#rotc").html(sample.c);
+        }
+        sample.t = t;
+
+        // Every 20 samples save record in mongoDB.
+
+        samples.push(sample);
+        if (samples.length > 20) {
+          created_at = new Date().getTime();
+          Samples.insert({samples: samples, created_at: created_at});
+          samples = [];
+        }
+      }, 1000);
+    }
+}
