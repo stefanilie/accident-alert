@@ -2,11 +2,18 @@
 @import 'lib/elements';
 
 .round-button {
-  background: grey;
+  // background: grey;
+  border-color: #674172;
+  border-width: 16px;
+  border-style: solid;
   border-radius: 100%;
   height: 40vh;
   width: 40vh;
 
+}
+.round-button-spinning {
+  height: 40vh;
+  width: 40vh;
 }
 
 .full-width-height {
@@ -20,4 +27,39 @@
   transform: translateY(-50%);
   left: 50%;
   transform: translateX(-50%);
+}
+
+.purple-text {
+  color: #674172;
+  font-size: 20vh;
+  position: relative;
+  top: 15%;
+  transform: translateY(-50%);
+  left: 85%;
+  transform: translateX(-50%);
+}
+
+.purple-text-stop {
+  color: #674172;
+  font-size: 15vh;
+  position: relative;
+  top: 48%;
+  transform: translateY(-50%);
+  // left: 85%;
+  // transform: translateX(-50%);
+}
+
+.ui.loader.large {
+  height: 40vh;
+  width: 40vh;
+  font-size: 8.5vh;
+  transform: translateY(-8%);
+  transform: translateX(-2%);
+}
+.ui.loader:after {
+  border-color: #674172 transparent transparent;
+}
+
+.ui.loader:before {
+  border: 0.2em solid rgba(0, 0, 0, 0.1);
 }
