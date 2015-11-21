@@ -1,6 +1,3 @@
-// Template.home.helpers({
-//   userPhoto: ''
-// });
 if(Meteor.isCordova){
   Meteor.startup(function(){
     navigator.contacts.find(["*"], function(contacts){
