@@ -30,3 +30,8 @@ Router.route('/people', {
     SEO.set({ title: 'People - ' + Meteor.App.NAME });
   }
 });
+
+Router.route('/profile/:_id', function () {
+  var params = this.params; // { _id: "5" }
+  var id = params._id; // "5"
+});
