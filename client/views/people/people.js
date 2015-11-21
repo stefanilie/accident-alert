@@ -1,4 +1,4 @@
-Template.home.people = function () {
+Template.people.rendered = function () {
     var emtyContactsList = [];
     if(Meteor.isCordova){
       function onSuccess(contacts){
