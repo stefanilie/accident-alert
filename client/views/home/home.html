@@ -1,3 +1,7 @@
 <template name="home">
-  <div>Home</div>
+  <div>
+  	{{#each contacts}}
+      <div>{{this.displayName}}</div>
+    {{/each}}
+  </div>
 </template>
