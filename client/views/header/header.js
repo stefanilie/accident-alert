@@ -1,3 +1,4 @@
+Samples = new Meteor.Collection("samples");
 Template.header.created = function () {
   Session.set('isActive', false);
   Session.set('showLogin', false);
@@ -30,10 +31,14 @@ Template['header'].events({
   },
   'click .log-out.button' : function () {
     Meteor.logout();
+  },
+  'click #monitor': function(){
+    console.log("ai apasat butonul");
+    getData();
   }
 });
 
-function ciorba()
+function getData()
 {
     console.log("am apelat functia ciorba");
     var timestamp = 0;
@@ -44,6 +49,7 @@ function ciorba()
       // Device motion event service routine!
 
       window.ondevicemotion = setInterval(function(e) {
+        console.log("am apelat functia ciorba");
 
         // Measure sample interval and siplay on page
 
