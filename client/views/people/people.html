@@ -1,22 +1,13 @@
 <template name="people">
   <div class="full-width-height">
 
-  	<ul>
-  		<b>Favs</b>
+  		<h1 class="center aligend">Favourites</h1>
   		{{#each favContacts}}
-  			<li>
-  				<span>{{this.displayName}}</span>
-  			</li>
+  				<h2>{{this.displayName}}</h2>
   		{{/each}}
-  	</ul>
 
-  	<ul>
-  		Phone
 	    {{#each phoneContacts}}
-	    	<li>
-	    		<span>{{this.displayName}}</span>
-	    	</li>
+	    		<h2>{{this.displayName}}</h2>
 	    {{/each}}
-	</ul>
   </div>
 </template>
