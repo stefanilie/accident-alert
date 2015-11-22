@@ -1,0 +1,10 @@
+<template name="people">
+  <div class="full-width-height">
+    {{#each contacts}}
+    	<li>
+    		<span>{{this.displayName}}</span>
+    		<input type="checkbox" checked="{{checked}}">
+    	</li>
+    {{/each}}
+  </div>
+</template>

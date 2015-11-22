@@ -22,3 +22,16 @@ Router.route('/profile', {
     SEO.set({ title: 'Profile - ' + Meteor.App.NAME });
   }
 });
+
+Router.route('/people', {
+  name: 'people',
+  action: function () {
+    this.render('people');
+    SEO.set({ title: 'People - ' + Meteor.App.NAME });
+  }
+});
+
+Router.route('/profile/:_id', function () {
+  var params = this.params; // { _id: "5" }
+  var id = params._id; // "5"
+});
