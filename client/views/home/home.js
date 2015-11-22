@@ -20,3 +20,4 @@ Template.home.events({
     Session.set('monitor','off');
   }
 });
+
