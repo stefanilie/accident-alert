@@ -74,11 +74,11 @@ function getData() {
       sampless.push(sample);
       if (sampless.length > 20) {
         console.log(samples);
-        alert(samples);
+        // alert(samples);
         created_at = new Date().getTime();
-        Samples.insert({
+        samples.insert({
           samples: samples,
-          created_at: created_at
+          createdAt: created_at
         });
         sampless = [];
       }

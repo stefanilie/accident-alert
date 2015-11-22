@@ -2,11 +2,8 @@ samples = new Mongo.Collection('samples');
 
 samples.attachSchema(
     new SimpleSchema({
-    title: {
-      type: String
-    },
-    content: {
-      type: String
+    samples: {
+      type: Object
     },
     createdAt: {
       type: Date,
