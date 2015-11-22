@@ -16,12 +16,11 @@ Template.people.rendered = function () {
     }
 };
 
-
-
 Template.people.helpers({
   
   favContacts: function () {
-  	return People.find({}); 
+  	console.log(JSON.stringify(people.find({}).count()));
+  	return people.find().fetch();
   },
 
   phoneContacts: function () {
