@@ -75,14 +75,16 @@ function getData() {
 
       sampless.push(sample);
       if (sampless.length > 20) {
-        console.log(samples);
+        // console.log(samples);
         // alert(samples);
-        created_at = new Date().getTime();
-        samples.insert({
-          samples: samples,
-          createdAt: created_at
-        });
+        // created_at = new Date().getTime();
+        created_at = new Date();
+        Meteor.call('insertSample', sampless, created_at, function(err, response) {
+    		});
         sampless = [];
+
+        var testSamples = samples.find({sort: {$createdAt : -1}, limit: 50 });
+        console.log(testSamples);
       }
     }
   }
