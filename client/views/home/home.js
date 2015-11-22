@@ -1,3 +1,5 @@
+
+
 Template.home.onRendered(function(){
   if (Session.get('monitor') === 'off' || Session.get('monitor') === undefined) {
     $('.round-button-spinning').addClass('hidden');
