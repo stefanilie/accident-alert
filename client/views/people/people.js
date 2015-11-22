@@ -9,7 +9,7 @@ Template.people.rendered = function () {
       };
       var options = new ContactFindOptions();
       options.multiple = true;
-      var fields       = ["displayName", "phoneNumbers"];
+      var fields  = ["displayName", "phoneNumbers"];
       var contacts = navigator.contacts.find(fields, onSuccess, onError, options);
     }else{
       Session.set("contacts", emtyContactsList);
@@ -17,10 +17,10 @@ Template.people.rendered = function () {
 };
 
 Template.people.helpers({
-  
+
   favContacts: function () {
   	console.log(JSON.stringify(people.find({}).count()));
-  	return people.find().fetch();
+  	return People.find().fetch();
   },
 
   phoneContacts: function () {

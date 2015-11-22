@@ -1,4 +1,4 @@
-people = new Mongo.Collection('people');
+People = new Mongo.Collection('people');
 
 //
 // people.attachSchema(
@@ -19,7 +19,7 @@ people = new Mongo.Collection('people');
 // Collection2 already does schema checking
 // Add custom permission rules if needed
 if (Meteor.isServer) {
-  people.allow({
+  People.allow({
     insert : function () {
       return true;
     },
@@ -33,5 +33,5 @@ if (Meteor.isServer) {
 }
 
 if (Meteor.isClient) {
-  Meteor.subscribe("people");
+  Meteor.subscribe("peoplePublication");
 }

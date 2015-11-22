@@ -36,5 +36,5 @@ ejson
 spacebars
 check
 fortawesome:fontawesome
-autopublish
 insecure
+patrickml:swal
