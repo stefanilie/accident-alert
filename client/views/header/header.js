@@ -1,91 +1,87 @@
-Samples = new Meteor.Collection("samples");
-Template.header.created = function () {
+Template.header.created = function() {
   Session.set('isActive', false);
   Session.set('showLogin', false);
 };
 
 Template['header'].helpers({
-  showLogin: function () {
+  showLogin: function() {
     return Session.get('showLogin');
   },
-  isActive: function () {
+  isActive: function() {
     return Session.get('isActive') ? 'active' : '';
   },
-  animateClass: function () {
+  animateClass: function() {
     return Session.get('isActive') ? 'fadeIn' : 'fadeOut';
   },
-  iconClass: function () {
+  iconClass: function() {
     return Meteor.user() ? 'user' : 'sign in';
   }
 });
 
 Template['header'].events({
-  'click .resize.button' : function () {
+  'click .resize.button': function() {
     var showLogin = Session.get('showLogin');
 
     Session.set('isActive', !Session.get('isActive'));
 
-    setTimeout(function () {
+    setTimeout(function() {
       Session.set('showLogin', !Session.get('showLogin'));
     }, 600);
   },
-  'click .log-out.button' : function () {
+  'click .log-out.button': function() {
     Meteor.logout();
   },
-  'click #monitor': function(){
-    console.log("ai apasat butonul");
+  'click #monitor': function() {
+    alert("ai apasat butonul");
     getData();
   }
 });
 
-function getData()
-{
-    console.log("am apelat functia ciorba");
-    var timestamp = 0;
-    var samples = [];
+function getData() {
+  var timestamp = 0;
+  var sampless = [];
 
-    if (window.DeviceMotionEvent != undefined) {
 
-      // Device motion event service routine!
+  if (window.DeviceMotionEvent != undefined) {
 
-      window.ondevicemotion = setInterval(function(e) {
-        console.log("am apelat functia ciorba");
+    // Device motion event service routine!
+    // setInterval(function() {
+    window.ondevicemotion = function(e) {
+      // Measure sample interval and siplay on page
+      //
+      var t = Date.now();
+      timestamp = t
 
-        // Measure sample interval and siplay on page
+      // Create the sample
 
-        var t = Date.now();
-        $("#measured").html(t - timestamp);
-        $("#interval").html(e.interval);
-        timestamp = t
+      var sample = {};
+      sample.x = e.accelerationIncludingGravity.x;
+      sample.y = e.accelerationIncludingGravity.y;
+      sample.z = e.accelerationIncludingGravity.z;
+      $("#accx").html(sample.x);
+      $("#accy").html(sample.y);
+      $("#accz").html(sample.z);
+      sample.t = t;
+      //
+      // var 30secsAgo = t -
+      // //setinterval are you ok?
+      // setInterval(function(){
+      //   Samples.
+      // }, 5000);
 
-        // Create the sample
+      // Every 20 samples save record in mongoDB.
 
-        var sample = {}
-        sample.x = e.acceleration.x;
-        sample.y = e.acceleration.y;
-        sample.z = e.acceleration.z;
-        $("#accx").html(sample.x);
-        $("#accy").html(sample.y);
-        $("#accz").html(sample.z);
-
-        if ( e.rotationRate ) {
-          sample.a = e.rotationRate.alpha;
-          sample.b = e.rotationRate.beta;
-          sample.c = e.rotationRate.gamma;
-          $("#rota").html(sample.a);
-          $("#rotb").html(sample.b);
-          $("#rotc").html(sample.c);
-        }
-        sample.t = t;
-
-        // Every 20 samples save record in mongoDB.
-
-        samples.push(sample);
-        if (samples.length > 20) {
-          created_at = new Date().getTime();
-          Samples.insert({samples: samples, created_at: created_at});
-          samples = [];
-        }
-      }, 1000);
+      sampless.push(sample);
+      if (sampless.length > 20) {
+        console.log(samples);
+        alert(samples);
+        created_at = new Date().getTime();
+        Samples.insert({
+          samples: samples,
+          created_at: created_at
+        });
+        sampless = [];
+      }
     }
+  }
 }
